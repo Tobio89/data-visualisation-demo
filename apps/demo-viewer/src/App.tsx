@@ -3,6 +3,7 @@ import { Box, Typography } from "@mui/material";
 import SideMenu from "./components/SideBar";
 
 import "./App.css";
+import Viewer from "./components/Viewer/Viewer";
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
           flexGrow: 1,
         })}
       >
-        <Typography variant="h1">Hello World</Typography>
+        {/* <Typography variant="h1">Hello World</Typography> */}
+        <Viewer />
       </Box>
     </Box>
   );
