@@ -12,6 +12,8 @@ export const commonConfig = {
 };
 
 export const viewerOptions = {
+  minZoomLevel: 1,
+  maxZoomLevel: 10,
   imageLoaderLimit: 16,
   smoothTileEdgesMinZoom: Infinity,
   immediateRender: true,
@@ -24,6 +26,7 @@ export const viewerOptions = {
   showRotationControl: true,
   zoomPerScroll: 1.3,
   animationTime: 0.3,
+  debugMode: true,
   gestureSettingsMouse: {
     clickToZoom: false,
     dblClickToZoom: false,

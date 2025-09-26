@@ -17,11 +17,24 @@ export const sendMetaXML = (_req: Request, res: Response) => {
   res.sendFile(`meta.xml`, options);
 };
 
-export const sendSinglePNG = (_req: Request, res: Response) => {
+export const sendSinglePNG = (req: Request, res: Response) => {
   const options = makeOptions();
-  res.sendFile(`mars-map-maxres_0_0_0.png`, options);
+
+  const { z, coords } = req.params;
+  const coordsOnly = coords.replace(".png", "");
+  const [x, y] = coordsOnly.split("_");
+
+  let layer = parseInt(z);
+  if (layer < 0) {
+    layer = 0;
+  } else if (layer > 7) {
+    layer = 7;
+  }
+
+  const imagePath = `mars-map-maxres_${layer}_${y}_${x}.png`;
+  res.sendFile(imagePath, options);
 };
 
 export const routes = {
-  sendSinglePNG: "/base-layer/**",
+  sendSinglePNG: "/base-layer/:image_name/:z/:coords",
 };
