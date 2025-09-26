@@ -12,6 +12,9 @@ export default defineConfig({
       root: "../../",
     }),
   ],
+  esbuild: {
+    target: "ESNext",
+  },
   build: {
     commonjsOptions: {
       transformMixedEsModules: true,

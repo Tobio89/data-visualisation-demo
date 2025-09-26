@@ -8,6 +8,7 @@ import {
   TooltipOverlayProps,
   WebGLOverlayProps,
   DeckGLOverlayProps,
+  BitmaskLayerProps,
 } from "@lunit/osd-react-renderer";
 
 declare module "react/jsx-runtime" {
@@ -22,6 +23,7 @@ declare module "react/jsx-runtime" {
       tooltipOverlay: TooltipOverlayProps;
       webGLOverlay: WebGLOverlayProps;
       deckGLOverlay: DeckGLOverlayProps;
+      bitmaskLayer: BitmaskLayerProps;
     }
   }
 }
