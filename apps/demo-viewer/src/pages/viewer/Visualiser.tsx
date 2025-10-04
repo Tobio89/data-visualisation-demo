@@ -33,7 +33,7 @@ console.log(defaultMetadata);
 //   },
 // });
 
-const Viewer = () => {
+const Visualiser = () => {
   const { osdViewerRef, handleViewportZoom } = useOSDHandlers();
 
   const options = {
@@ -58,7 +58,6 @@ const Viewer = () => {
     masterOpacity: 1.0,
   };
 
-  // const osdViewerRef = useRef<typeof OSDViewer>(null);
   return (
     <Box sx={{ width: "100%", height: "100%" }}>
       <OSDViewer
@@ -90,4 +89,4 @@ const Viewer = () => {
   );
 };
 
-export default Viewer;
+export default Visualiser;

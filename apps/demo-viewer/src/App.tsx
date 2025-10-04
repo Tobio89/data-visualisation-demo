@@ -1,10 +1,11 @@
 import { Box } from "@mui/material";
+import { RouterProvider } from "react-router";
 
 import SideMenu from "./components/SideBar";
+import HeaderBar from "./components/HeaderBar";
+import router from "./routes";
 
 import "./App.css";
-import Viewer from "./components/Viewer/Viewer";
-import HeaderBar from "./components/HeaderBar";
 
 function App() {
   return (
@@ -25,8 +26,7 @@ function App() {
             flexGrow: 1,
           })}
         >
-          {/* <Typography variant="h1">Hello World</Typography> */}
-          <Viewer />
+          <RouterProvider router={router} />
         </Box>
       </Box>
     </Box>
