@@ -13,7 +13,8 @@ const defaultMetadata = readXMLMetadata(
 );
 
 const bitmaskMetadata = readXMLMetadata(
-  '<Image TileSize="254" Overlap="1" Format="png" xmlns="http://schemas.microsoft.com/deepzoom/2008"><Size Width="37028" Height="35637" /></Image>'
+  `<Image TileSize="256" Overlap="0" Format="png" MinLevel="0" MaxLevel="7" xmlns="http://schemas.microsoft.com/deepzoom/2008"><Size Width="23039" Height="13325" /></Image>`
+  // '<Image TileSize="254" Overlap="1" Format="png" xmlns="http://schemas.microsoft.com/deepzoom/2008"><Size Width="37028" Height="35637" /></Image>'
 );
 
 console.log(defaultMetadata);
