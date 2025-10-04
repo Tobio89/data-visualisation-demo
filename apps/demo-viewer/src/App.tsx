@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import { RouterProvider } from "react-router";
+import { useRoutes } from "react-router";
 
 import SideMenu from "./components/SideBar";
 import HeaderBar from "./components/HeaderBar";
@@ -8,6 +8,8 @@ import router from "./routes";
 import "./App.css";
 
 function App() {
+  const element = useRoutes(router);
+
   return (
     <Box
       sx={{
@@ -26,7 +28,7 @@ function App() {
             flexGrow: 1,
           })}
         >
-          <RouterProvider router={router} />
+          {element}
         </Box>
       </Box>
     </Box>
