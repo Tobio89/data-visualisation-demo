@@ -1,3 +1,11 @@
+export const app_colours = {
+  marsOrange: "#E67E0F",
+  marsRed: "#C0440E",
+  onyx: "#32373B",
+  lightGrey: "#DBD4D3",
+  hiGreen: "#43AA8B",
+};
+
 export const commonConfig = {
   zoom: {
     controllerMinZoom: 0.3125,

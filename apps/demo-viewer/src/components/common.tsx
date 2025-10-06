@@ -6,6 +6,7 @@ export const PageContainer = ({ children }: { children: React.ReactNode }) => {
       component="main"
       sx={{
         flexGrow: 1,
+        padding: "0 20px",
       }}
     >
       {children}
