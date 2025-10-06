@@ -1,12 +1,10 @@
 import { Typography } from "@mui/material";
 import { PageContainer } from "../../components/common";
 
-function AboutPage() {
+export default function HomePage() {
   return (
     <PageContainer>
-      <Typography variant="h1">About</Typography>
+      <Typography variant="h1">Home</Typography>
     </PageContainer>
   );
 }
-
-export default AboutPage;
