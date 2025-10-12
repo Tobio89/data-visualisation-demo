@@ -7,6 +7,7 @@ import { Box } from "@mui/material";
 import { commonConfig, viewerOptions } from "../../const";
 import { Ref } from "react";
 import useOSDHandlers from "./useOSDHandlers";
+import useVisualizationStore from "../../store/store";
 
 // const defaultMetadata = readXMLMetadata(
 //   `<Image TileSize="256" Overlap="0" Format="png" MinLevel="0" MaxLevel="7" xmlns="http://schemas.microsoft.com/deepzoom/2008"><Size Width="23039" Height="13325" /></Image>`
@@ -23,11 +24,13 @@ const marsD4Metadata = readXMLMetadata(
 const Visualiser = () => {
   const { osdViewerRef, handleViewportZoom } = useOSDHandlers();
 
+  const { redChannel } = useVisualizationStore();
+
   const options = {
     channels: {
       red: {
         mode: "bitmask",
-        state: [true, true, true, true, true, true],
+        state: redChannel,
         colorScheme: [
           "#5091ff",
           "#0ca678",
