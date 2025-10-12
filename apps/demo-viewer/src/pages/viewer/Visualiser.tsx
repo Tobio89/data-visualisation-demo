@@ -32,12 +32,12 @@ const Visualiser = () => {
         mode: "bitmask",
         state: redChannel,
         colorScheme: [
-          "#5091ff",
-          "#0ca678",
+          "#5f9b1c",
+          "#7f4883",
           "#f76707",
-          "#91C4A3",
-          "#0ca678",
-          "#000000",
+          "#84acba",
+          "#d8cd01",
+          "#d04433",
         ],
       },
       // green: {
@@ -51,7 +51,7 @@ const Visualiser = () => {
       //   colorScheme: "jet",
       // },
     },
-    blendMode: "overlay",
+    blendMode: "blend",
     masterOpacity: "0.2",
   };
 

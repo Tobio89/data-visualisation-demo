@@ -34,7 +34,7 @@ export const viewerOptions = {
   showRotationControl: true,
   zoomPerScroll: 1.3,
   animationTime: 0.3,
-  debugMode: true,
+  debugMode: false,
   gestureSettingsMouse: {
     clickToZoom: false,
     dblClickToZoom: false,
