@@ -8,6 +8,7 @@ import * as complexImage from "./routes/complex";
 import * as bitmask from "./routes/bitmask";
 
 import * as baseLayer from "./routes/baseLayer";
+import * as marsD4 from "./routes/mars_d4";
 
 export async function createServer(): Promise<Express> {
   const server = initServer();
@@ -35,6 +36,11 @@ export async function createServer(): Promise<Express> {
   );
 
   server.get(bitmask.routes.sendBitmask, bitmask.sendSinglePNG);
+
+  server.get(marsD4.routes.sendBasePNG, marsD4.sendBasePNG);
+  server.get(marsD4.routes.sendBaseMetaXML, marsD4.sendBaseMetaXML);
+  server.get(marsD4.routes.sendAnnotationPNG, marsD4.sendAnnotationPNG);
+  server.get(marsD4.routes.sendAnnotationMetaXML, marsD4.sendAnnotationMetaXML);
 
   return server;
 }
