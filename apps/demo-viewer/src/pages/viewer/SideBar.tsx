@@ -1,4 +1,5 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
+import VisualizationControls from "./VisualizationControls";
 
 const SideBar = () => {
   return (
@@ -6,10 +7,10 @@ const SideBar = () => {
       sx={{
         width: "180px",
         padding: "8px",
-        border: "1px solid red",
+        borderRight: "1px solid #e0e0e0",
       }}
     >
-      <Typography variant="h6">SideBar</Typography>
+      <VisualizationControls />
     </Box>
   );
 };

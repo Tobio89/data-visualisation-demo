@@ -7,55 +7,52 @@ import { Box } from "@mui/material";
 import { commonConfig, viewerOptions } from "../../const";
 import { Ref } from "react";
 import useOSDHandlers from "./useOSDHandlers";
+import useVisualizationStore from "../../store/store";
 
-const defaultMetadata = readXMLMetadata(
-  `<Image TileSize="256" Overlap="0" Format="png" MinLevel="0" MaxLevel="7" xmlns="http://schemas.microsoft.com/deepzoom/2008"><Size Width="23039" Height="13325" /></Image>`
+// const defaultMetadata = readXMLMetadata(
+//   `<Image TileSize="256" Overlap="0" Format="png" MinLevel="0" MaxLevel="7" xmlns="http://schemas.microsoft.com/deepzoom/2008"><Size Width="23039" Height="13325" /></Image>`
+// );
+
+// const bitmaskMetadata = readXMLMetadata(
+//   `<Image TileSize="256" Overlap="0" Format="png" MinLevel="0" MaxLevel="7" xmlns="http://schemas.microsoft.com/deepzoom/2008"><Size Width="23039" Height="13325" /></Image>`
+// );
+
+const marsD4Metadata = readXMLMetadata(
+  `<Image TileSize="256" Overlap="0" Format="png" MinLevel="0" MaxLevel="6" xmlns="http://schemas.microsoft.com/deepzoom/2008"><Size Width="16384" Height="8192" /></Image>`
 );
-
-const bitmaskMetadata = readXMLMetadata(
-  `<Image TileSize="256" Overlap="0" Format="png" MinLevel="0" MaxLevel="7" xmlns="http://schemas.microsoft.com/deepzoom/2008"><Size Width="23039" Height="13325" /></Image>`
-  // '<Image TileSize="254" Overlap="1" Format="png" xmlns="http://schemas.microsoft.com/deepzoom/2008"><Size Width="37028" Height="35637" /></Image>'
-);
-
-console.log(defaultMetadata);
-// const tileSource = new OpenSeadragon.TileSource({
-//   // url: "http://localhost:4444/base-layer/",
-//   tileSize: 256,
-//   overlap: 0,
-//   format: "png",
-//   width: 23039,
-//   height: 13325,
-//   minLevel: 0,
-//   maxLevel: 7,
-//   getTileUrl: (level: number, x: number, y: number) => {
-//     const url = `http://localhost:4444/base-layer/_files/${level}/${x}_${y}.png`;
-//     return url;
-//   },
-// });
 
 const Visualiser = () => {
   const { osdViewerRef, handleViewportZoom } = useOSDHandlers();
+
+  const { redChannel } = useVisualizationStore();
 
   const options = {
     channels: {
       red: {
         mode: "bitmask",
-        state: [true, true, true, true],
-        colorScheme: ["#5091ff", "#0ca678", "#f76707", "#91C4A3"],
+        state: redChannel,
+        colorScheme: [
+          "#5091ff",
+          "#0ca678",
+          "#f76707",
+          "#91C4A3",
+          "#0ca678",
+          "#000000",
+        ],
       },
-      green: {
-        mode: "bitmask",
-        state: [true, true, true, true],
-        colorScheme: ["#7292FD", "#EE5140", "#EE5140", "#7292FD"],
-      },
-      blue: {
-        mode: "jet-heatmap",
-        state: true,
-        colorScheme: "jet",
-      },
+      // green: {
+      //   mode: "bitmask",
+      //   state: [true, true, true, true],
+      //   colorScheme: ["#7292FD", "#EE5140", "#EE5140", "#7292FD"],
+      // },
+      // blue: {
+      //   mode: "jet-heatmap",
+      //   state: true,
+      //   colorScheme: "jet",
+      // },
     },
-    blendMode: "blend",
-    masterOpacity: 1.0,
+    blendMode: "overlay",
+    masterOpacity: "0.2",
   };
 
   return (
@@ -74,13 +71,13 @@ const Visualiser = () => {
           />
           <tiledImage
             index={0}
-            tileUrlBase="http://localhost:4444/base-layer/"
-            tileMetadata={defaultMetadata}
+            tileUrlBase="http://localhost:4444/mars-d4-base/image_name"
+            tileMetadata={marsD4Metadata}
           />
           <bitmaskLayer
             index={1}
-            tileUrlBase="http://localhost:4444/bitmask/bitmask-tri-channel-05-256"
-            tileMetadata={bitmaskMetadata}
+            tileUrlBase="http://localhost:4444/mars-d4-annotations/image_name"
+            tileMetadata={marsD4Metadata}
             options={options}
           />
         </>
