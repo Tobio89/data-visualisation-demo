@@ -7,7 +7,7 @@ const SideBar = () => {
       sx={{
         width: "280px",
         padding: "8px",
-        borderRight: "3px solid #32373B",
+        // borderRight: "3px solid #32373B",
       }}
     >
       <VisualizationControls />
