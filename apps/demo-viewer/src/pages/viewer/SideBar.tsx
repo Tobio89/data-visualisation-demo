@@ -5,9 +5,9 @@ const SideBar = () => {
   return (
     <Box
       sx={{
-        width: "180px",
+        width: "280px",
         padding: "8px",
-        borderRight: "1px solid #e0e0e0",
+        borderRight: "3px solid #32373B",
       }}
     >
       <VisualizationControls />

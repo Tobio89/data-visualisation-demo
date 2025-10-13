@@ -1,17 +1,14 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 
 import useVisualizationStore from "../../store/store";
 
 import ToggleSwitch from "../../components/ToggleSwitch/ToggleSwitch";
 
-const indexedLayers = [
-  "Planitia Areas",
-  "Planum Areas",
-  "Terra Areas",
-  "Chaos (Channels)",
-  "Craters",
-  "Mountains",
-];
+import { visualizationConfig } from "../../visualizationConfig";
+import {
+  VisualisationSection,
+  VisualisationTitle,
+} from "../../components/common";
 
 const VisualizationControls = () => {
   const { redChannel, updateRedChannel } = useVisualizationStore();
@@ -21,20 +18,24 @@ const VisualizationControls = () => {
       sx={{
         display: "flex",
         flexDirection: "column",
+        alignItems: "flex-start",
       }}
     >
-      <Typography variant="h6">Controls</Typography>
-      {indexedLayers.map((layerName, ind) => {
-        return (
-          <ToggleSwitch
-            title={layerName}
-            on={redChannel[ind]}
-            onToggle={(val) => {
-              updateRedChannel(ind, !val);
-            }}
-          />
-        );
-      })}
+      <VisualisationTitle>Visualisation Controls</VisualisationTitle>
+      <VisualisationSection title="Regions and Features">
+        {visualizationConfig.pixelLayers.map((cfg, ind) => {
+          return (
+            <ToggleSwitch
+              title={cfg.label}
+              color={cfg.color}
+              on={redChannel[ind]}
+              onToggle={(val) => {
+                updateRedChannel(ind, !val);
+              }}
+            />
+          );
+        })}
+      </VisualisationSection>
     </Box>
   );
 };

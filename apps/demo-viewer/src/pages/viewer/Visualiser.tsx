@@ -2,20 +2,12 @@ import OSDViewer, {
   OSDViewerRef,
   readXMLMetadata,
 } from "@lunit/osd-react-renderer";
-// import OpenSeadragon from "openseadragon";
 import { Box } from "@mui/material";
 import { commonConfig, viewerOptions } from "../../const";
 import { Ref } from "react";
 import useOSDHandlers from "./useOSDHandlers";
 import useVisualizationStore from "../../store/store";
-
-// const defaultMetadata = readXMLMetadata(
-//   `<Image TileSize="256" Overlap="0" Format="png" MinLevel="0" MaxLevel="7" xmlns="http://schemas.microsoft.com/deepzoom/2008"><Size Width="23039" Height="13325" /></Image>`
-// );
-
-// const bitmaskMetadata = readXMLMetadata(
-//   `<Image TileSize="256" Overlap="0" Format="png" MinLevel="0" MaxLevel="7" xmlns="http://schemas.microsoft.com/deepzoom/2008"><Size Width="23039" Height="13325" /></Image>`
-// );
+import { visualizationConfig } from "../../visualizationConfig";
 
 const marsD4Metadata = readXMLMetadata(
   `<Image TileSize="256" Overlap="0" Format="png" MinLevel="0" MaxLevel="6" xmlns="http://schemas.microsoft.com/deepzoom/2008"><Size Width="16384" Height="8192" /></Image>`
@@ -31,14 +23,7 @@ const Visualiser = () => {
       red: {
         mode: "bitmask",
         state: redChannel,
-        colorScheme: [
-          "#5f9b1c",
-          "#7f4883",
-          "#f76707",
-          "#84acba",
-          "#d8cd01",
-          "#d04433",
-        ],
+        colorScheme: visualizationConfig.pixelLayers.map((cfg) => cfg.color),
       },
       // green: {
       //   mode: "bitmask",
