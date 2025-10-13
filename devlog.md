@@ -1,5 +1,21 @@
 # Development Log
 
+### 2025-10-13
+
+I spent a couple of days setting up Mars annotations to use.
+
+The base image is from a Tianwen satellite mission, but the other images I found that explain Mars' regions are from another mission, so I had to try my best to line everything up.
+Since doing this, it's really nice to have working bit masked annotations! However I've noticed that the annotations aren't quite up to standard:
+
+- The slightly overlapping regions don't look that good
+- The mountains aren't that accurate
+- There are way more craters, and having more would look nicer.
+
+Still, now that the main work is done, it should be nice and quick.
+I might also try to get a slightly bigger version up. Maybe I can stitch multiple layers together in Rust. Or I can use downscaling!
+
+I do think that the dual-project system is quite good for development, but I am thinking to separate them out. I want to minimise issues that I could have when building and deploying. Also I want to try Go or maybe Java for the server.
+
 ### 2025-10-06
 
 It's Thanksgiving in Korea, but there's a quick moment, so I'm setting up a bit of styling. I've also decided to make the repo public.
