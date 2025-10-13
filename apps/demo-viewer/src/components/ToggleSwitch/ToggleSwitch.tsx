@@ -1,5 +1,18 @@
-import { Box, Switch, Typography } from "@mui/material";
+import { Box, styled, Switch, Typography } from "@mui/material";
 import type { ToggleSwitchProps } from "./ToggleSwitch.types";
+
+const Toggle = styled(Switch)(({ theme, checked }) => ({
+  "& .MuiSwitch-track": {
+    background: `${
+      checked ? theme.palette.secondary.dark : theme.palette.primary.dark
+    } !important`,
+  },
+  "& .MuiSwitch-thumb": {
+    backgroundColor: checked
+      ? theme.palette.secondary.light
+      : theme.palette.primary.light,
+  },
+}));
 
 const ToggleLabel = ({
   title,
@@ -27,7 +40,7 @@ const ToggleSwitch = ({ title, on, onToggle, color }: ToggleSwitchProps) => {
       }}
     >
       <ToggleLabel title={title} color={color} />
-      <Switch checked={on} onChange={() => onToggle(on)} />
+      <Toggle checked={on} onChange={() => onToggle(on)} />
     </Box>
   );
 };

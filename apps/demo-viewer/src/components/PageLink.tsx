@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 import { Link, useLocation } from "react-router";
-import { app_colours } from "../const";
+import theme from "../theme";
 
 export default function PageLink({
   to,
@@ -23,7 +23,9 @@ export default function PageLink({
         variant="body1"
         sx={{
           textDecoration: "none",
-          color: isActive ? app_colours.hiGreen : app_colours.marsOrange,
+          color: isActive
+            ? theme.palette.primary.light
+            : theme.palette.primary.main,
         }}
       >
         {title}
