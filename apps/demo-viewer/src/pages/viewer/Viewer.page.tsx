@@ -1,9 +1,12 @@
 import { Box } from "@mui/material";
 
-import Visualiser from "./Visualiser";
+import Visualiser from "./Visualiser/Visualiser";
 import SideBar from "./SideBar";
+import useVisualisationRendering from "./useVisualisationRendering/useVisualisationRendering";
 
 const ViewerPage = () => {
+  const { onTooltipOverlayRedraw } = useVisualisationRendering();
+
   return (
     <Box
       component="main"
@@ -22,7 +25,7 @@ const ViewerPage = () => {
           flexGrow: 1,
         })}
       >
-        <Visualiser />
+        <Visualiser onTooltipOverlayRedraw={onTooltipOverlayRedraw} />
       </Box>
     </Box>
   );

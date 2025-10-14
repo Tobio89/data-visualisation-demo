@@ -1,19 +1,23 @@
+import { Ref } from "react";
 import OSDViewer, {
   OSDViewerRef,
   readXMLMetadata,
 } from "@lunit/osd-react-renderer";
 import { Box } from "@mui/material";
-import { commonConfig, viewerOptions } from "../../const";
-import { Ref } from "react";
-import useOSDHandlers from "./useOSDHandlers";
-import useVisualizationStore from "../../store/store";
-import { visualizationConfig } from "../../visualizationConfig";
+import useOSDHandlers from "../useOSDHandlers";
+
+import useVisualizationStore from "../../../store/store";
+import { commonConfig, viewerOptions } from "../../../const";
+import { visualizationConfig } from "../../../visualizationConfig";
+
+import type { VisualizerProps } from "./Visualizer.types";
+import OpenSeadragon from "openseadragon";
 
 const marsD4Metadata = readXMLMetadata(
   `<Image TileSize="256" Overlap="0" Format="png" MinLevel="0" MaxLevel="6" xmlns="http://schemas.microsoft.com/deepzoom/2008"><Size Width="16384" Height="8192" /></Image>`
 );
 
-const Visualiser = () => {
+const Visualiser = ({ onTooltipOverlayRedraw }: VisualizerProps) => {
   const { osdViewerRef, handleViewportZoom } = useOSDHandlers();
 
   const { redChannel, master: masterOn } = useVisualizationStore();
@@ -50,7 +54,7 @@ const Visualiser = () => {
         <>
           <viewport
             zoom={1}
-            refPoint={{ x: 0, y: 0 }}
+            refPoint={new OpenSeadragon.Point(0, 0)}
             rotation={commonConfig.rotation}
             onZoom={handleViewportZoom}
           />
@@ -66,6 +70,7 @@ const Visualiser = () => {
             tileMetadata={marsD4Metadata}
             options={options}
           />
+          <tooltipOverlay onRedraw={onTooltipOverlayRedraw} />
         </>
       </OSDViewer>
     </Box>

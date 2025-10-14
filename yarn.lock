@@ -1336,6 +1336,11 @@
   resolved "https://registry.yarnpkg.com/@types/offscreencanvas/-/offscreencanvas-2019.7.3.tgz#90267db13f64d6e9ccb5ae3eac92786a7c77a516"
   integrity sha512-ieXiYmgSRXUDeOntE1InxjWyvEelZGP63M+cGuquuRLuIKKT1osnkXjxev9B7d1nXSug5vpunx+gNlbVxMlC9A==
 
+"@types/openseadragon@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@types/openseadragon/-/openseadragon-4.1.0.tgz#61e3d64d4a2bbcf3265f60516315225239004d49"
+  integrity sha512-GLWtnT2QY0+VfoqP8Y2U7aOUoCH6ncFnZ7QbqohFLBKkujCvk3UamlJZlvlKajm2VstlxgeC7yfB9vY6M5n9PA==
+
 "@types/parse-json@^4.0.0":
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/@types/parse-json/-/parse-json-4.0.2.tgz#5950e50960793055845e956c427fc2b0d70c5239"
