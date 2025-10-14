@@ -11,7 +11,12 @@ import {
 } from "../../components/common";
 
 const VisualizationControls = () => {
-  const { redChannel, updateRedChannel } = useVisualizationStore();
+  const {
+    redChannel,
+    updateRedChannel,
+    master: masterOn,
+    updateMaster,
+  } = useVisualizationStore();
 
   return (
     <Box
@@ -22,6 +27,13 @@ const VisualizationControls = () => {
       }}
     >
       <VisualisationTitle>Visualisation Controls</VisualisationTitle>
+      <ToggleSwitch
+        title="Master"
+        on={masterOn}
+        onToggle={(val) => {
+          updateMaster(!val);
+        }}
+      />
       <VisualisationSection title="Regions and Features">
         {visualizationConfig.pixelLayers.map((cfg, ind) => {
           return (

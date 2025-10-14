@@ -16,7 +16,7 @@ const marsD4Metadata = readXMLMetadata(
 const Visualiser = () => {
   const { osdViewerRef, handleViewportZoom } = useOSDHandlers();
 
-  const { redChannel } = useVisualizationStore();
+  const { redChannel, master: masterOn } = useVisualizationStore();
 
   const options = {
     channels: {
@@ -61,6 +61,7 @@ const Visualiser = () => {
           />
           <bitmaskLayer
             index={1}
+            isVisible={masterOn}
             tileUrlBase="http://localhost:4444/mars-d4-annotations/image_name"
             tileMetadata={marsD4Metadata}
             options={options}
