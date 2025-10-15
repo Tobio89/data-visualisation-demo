@@ -1,5 +1,16 @@
 # Development Log
 
+### 2025-10-15
+
+I fought with DeckGL, and I won. I selected version 9.0.34, which I knew was a compatible version.
+DeckGL is more powerful than WebGL - it's a visualisation tool made by Uber.
+I think this is part of what makes it hard to implement in OSD apps - it is basically a full replacement. Anyway, it's working!
+
+This is great because DeckGL comes with free support for hovering over elements, and it also supports paths nicely.
+
+As such, I've added some point data! Mountains and mission sites. Now that's working, I'll be able to add fun tooltips to explain something about each point.
+Currently the data is in a json file in the viewer's main directory. I'm going to build this into the tiler at some point.
+
 ### 2025-10-13
 
 I spent a couple of days setting up Mars annotations to use.
