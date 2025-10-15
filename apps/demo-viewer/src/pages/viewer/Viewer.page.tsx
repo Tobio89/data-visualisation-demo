@@ -5,7 +5,8 @@ import SideBar from "./SideBar";
 import useVisualisationRendering from "./useVisualisationRendering/useVisualisationRendering";
 
 const ViewerPage = () => {
-  const { onTooltipOverlayRedraw } = useVisualisationRendering();
+  const { onTooltipOverlayRedraw, onDeckGLOverlayRedraw } =
+    useVisualisationRendering();
 
   return (
     <Box
@@ -25,7 +26,10 @@ const ViewerPage = () => {
           flexGrow: 1,
         })}
       >
-        <Visualiser onTooltipOverlayRedraw={onTooltipOverlayRedraw} />
+        <Visualiser
+          onTooltipOverlayRedraw={onTooltipOverlayRedraw}
+          onDeckGLOverlayRedraw={onDeckGLOverlayRedraw}
+        />
       </Box>
     </Box>
   );

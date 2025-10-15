@@ -12,12 +12,16 @@ import { visualizationConfig } from "../../../visualizationConfig";
 
 import type { VisualizerProps } from "./Visualizer.types";
 import OpenSeadragon from "openseadragon";
+import { OrthographicView } from "@deck.gl/core";
 
 const marsD4Metadata = readXMLMetadata(
   `<Image TileSize="256" Overlap="0" Format="png" MinLevel="0" MaxLevel="6" xmlns="http://schemas.microsoft.com/deepzoom/2008"><Size Width="16384" Height="8192" /></Image>`
 );
 
-const Visualiser = ({ onTooltipOverlayRedraw }: VisualizerProps) => {
+const Visualiser = ({
+  onTooltipOverlayRedraw,
+  onDeckGLOverlayRedraw,
+}: VisualizerProps) => {
   const { osdViewerRef, handleViewportZoom } = useOSDHandlers();
 
   const { redChannel, master: masterOn } = useVisualizationStore();
@@ -69,6 +73,15 @@ const Visualiser = ({ onTooltipOverlayRedraw }: VisualizerProps) => {
             tileUrlBase="http://localhost:4444/mars-d4-annotations/image_name"
             tileMetadata={marsD4Metadata}
             options={options}
+          />
+          <deckGLOverlay
+            views={[
+              new OrthographicView({ id: "base" }),
+              // new OrthographicView({ id: 'subcell' }),
+            ]}
+            onRedraw={(...args) => {
+              onDeckGLOverlayRedraw(...args);
+            }}
           />
           <tooltipOverlay onRedraw={onTooltipOverlayRedraw} />
         </>
