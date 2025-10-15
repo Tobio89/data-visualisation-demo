@@ -6,7 +6,7 @@ import OSDViewer, {
 import { Box } from "@mui/material";
 import useOSDHandlers from "../useOSDHandlers";
 
-import useVisualizationStore from "../../../store/store";
+import { useVisualizationStore } from "../../../store/store";
 import { commonConfig, viewerOptions } from "../../../const";
 import { visualizationConfig } from "../../../visualizationConfig";
 
@@ -31,7 +31,9 @@ const Visualiser = ({
       red: {
         mode: "bitmask",
         state: redChannel,
-        colorScheme: visualizationConfig.pixelLayers.map((cfg) => cfg.color),
+        colorScheme: visualizationConfig.pixelLayers.map(
+          (cfg) => cfg.legend.color
+        ),
       },
       // green: {
       //   mode: "bitmask",

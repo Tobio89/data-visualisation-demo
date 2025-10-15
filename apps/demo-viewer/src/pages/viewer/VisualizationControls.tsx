@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 
-import useVisualizationStore from "../../store/store";
+import { useVisualizationStore } from "../../store/store";
 
 import ToggleSwitch from "../../components/ToggleSwitch/ToggleSwitch";
 
@@ -12,11 +12,26 @@ import {
 
 const VisualizationControls = () => {
   const {
-    redChannel,
-    updateRedChannel,
     master: masterOn,
     updateMaster,
+    redChannel,
+    updateRedChannel,
+    drawMountains,
+    updateDrawMountains,
+    drawMissionSites,
+    updateDrawMissionSites,
   } = useVisualizationStore();
+
+  const pointControls = [
+    {
+      state: drawMountains,
+      onToggle: updateDrawMountains,
+    },
+    {
+      state: drawMissionSites,
+      onToggle: updateDrawMissionSites,
+    },
+  ];
 
   return (
     <Box
@@ -39,10 +54,24 @@ const VisualizationControls = () => {
           return (
             <ToggleSwitch
               title={cfg.label}
-              color={cfg.color}
+              legend={cfg.legend}
               on={redChannel[ind]}
               onToggle={(val) => {
                 updateRedChannel(ind, !val);
+              }}
+            />
+          );
+        })}
+      </VisualisationSection>
+      <VisualisationSection title="Points of Interest">
+        {visualizationConfig.pointLayers.map((cfg, ind) => {
+          return (
+            <ToggleSwitch
+              title={cfg.label}
+              legend={cfg.legend}
+              on={pointControls[ind].state}
+              onToggle={(val) => {
+                pointControls[ind].onToggle(!val);
               }}
             />
           );

@@ -1,7 +1,5 @@
 import { useCallback } from "react";
 
-import marsLocaleData from "../../../marsLocaleData.json";
-
 import type { TooltipOverlayRedrawArgs } from "./useVisualisationRendering.types";
 import usePointRendering from "./usePointRendering";
 
@@ -9,36 +7,25 @@ import useDeckGL from "./useDeckGL";
 import { ViewStateProps } from "@deck.gl/core/lib/deck";
 import { LayerFilter } from "./useDeckGL.types";
 import { Deck } from "@deck.gl/core";
+import { useMouseCoords } from "apps/demo-viewer/src/store/store";
+
+// import marsLocaleData from "../../../marsLocaleData.json";
 
 const useVisualisationRendering = () => {
-  const { mountains } = marsLocaleData;
+  // const { mountains } = marsLocaleData;
 
   const { createPointLayers } = usePointRendering();
   const { drawDeckLayer, clearLayers, constructLayers } = useDeckGL();
 
+  const { updateMouseCoords } = useMouseCoords();
+
   const onTooltipOverlayRedraw = useCallback(
-    ({
-      tooltipCoord,
-      originalEvent,
-      overlayCanvasEl,
-    }: TooltipOverlayRedrawArgs) => {
-      if (originalEvent?.ctrlKey) {
-        console.log("mouse at: ", tooltipCoord);
+    ({ tooltipCoord }: TooltipOverlayRedrawArgs) => {
+      if (tooltipCoord) {
+        updateMouseCoords(tooltipCoord.x, tooltipCoord.y);
       }
-
-      // const ctx = overlayCanvasEl.getContext("2d");
-      // if (!ctx) return;
-
-      // mountains.forEach((mountain) => {
-      //   const { x, y } = mountain.point;
-      //   ctx.fillStyle = "#fff";
-      //   ctx.beginPath();
-      //   ctx.ellipse(x, y, 12, 12, 0, 0, 2 * Math.PI);
-      //   ctx.fill();
-      //   ctx.closePath();
-      // });
     },
-    []
+    [updateMouseCoords]
   );
 
   const onDeckGLOverlayRedraw = (viewer: OpenSeadragon.Viewer, deck: Deck) => {
@@ -72,7 +59,7 @@ const useVisualisationRendering = () => {
 
     const layers = constructLayers([
       {
-        layerConstructor: () => createPointLayers(viewer),
+        layerConstructor: () => createPointLayers(),
         shouldRender: true,
       },
       // {
