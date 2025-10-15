@@ -25,7 +25,7 @@ export const viewerOptions = {
   imageLoaderLimit: 16,
   smoothTileEdgesMinZoom: Infinity,
   immediateRender: true,
-  // alwaysBlend: true,
+  // wrapHorizontal: true,
   showNavigator: true,
   showNavigationControl: false,
   timeout: 60000,

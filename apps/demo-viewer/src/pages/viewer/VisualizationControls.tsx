@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 
-import useVisualizationStore from "../../store/store";
+import { useVisualizationStore } from "../../store/store";
 
 import ToggleSwitch from "../../components/ToggleSwitch/ToggleSwitch";
 
@@ -12,10 +12,12 @@ import {
 
 const VisualizationControls = () => {
   const {
-    redChannel,
-    updateRedChannel,
     master: masterOn,
     updateMaster,
+    redChannel,
+    updateRedChannel,
+    drawMountains,
+    updateDrawMountains,
   } = useVisualizationStore();
 
   return (
@@ -47,6 +49,15 @@ const VisualizationControls = () => {
             />
           );
         })}
+      </VisualisationSection>
+      <VisualisationSection title="Points of Interest">
+        <ToggleSwitch
+          title="Mountains"
+          on={drawMountains}
+          onToggle={(val) => {
+            updateDrawMountains(!val);
+          }}
+        />
       </VisualisationSection>
     </Box>
   );

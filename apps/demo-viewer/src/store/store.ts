@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-import type { VizState } from "./store.types";
+import type { VizState, MouseCoordsState } from "./store.types";
 
 const useVisualizationStore = create<VizState>((set) => ({
   master: true,
@@ -12,6 +12,13 @@ const useVisualizationStore = create<VizState>((set) => ({
       newState[index] = value;
       return { redChannel: newState, master: value ? true : state.master };
     }),
+  drawMountains: true,
+  updateDrawMountains: (value: boolean) => set({ drawMountains: value }),
 }));
 
-export default useVisualizationStore;
+const useMouseCoords = create<MouseCoordsState>((set) => ({
+  mouseCoords: { x: 0, y: 0 },
+  updateMouseCoords: (x: number, y: number) => set({ mouseCoords: { x, y } }),
+}));
+
+export { useVisualizationStore, useMouseCoords };

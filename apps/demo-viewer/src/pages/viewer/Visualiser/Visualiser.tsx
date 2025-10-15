@@ -6,7 +6,7 @@ import OSDViewer, {
 import { Box } from "@mui/material";
 import useOSDHandlers from "../useOSDHandlers";
 
-import useVisualizationStore from "../../../store/store";
+import { useVisualizationStore } from "../../../store/store";
 import { commonConfig, viewerOptions } from "../../../const";
 import { visualizationConfig } from "../../../visualizationConfig";
 
