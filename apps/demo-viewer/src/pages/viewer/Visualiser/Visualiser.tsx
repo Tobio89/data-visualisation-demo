@@ -31,7 +31,9 @@ const Visualiser = ({
       red: {
         mode: "bitmask",
         state: redChannel,
-        colorScheme: visualizationConfig.pixelLayers.map((cfg) => cfg.color),
+        colorScheme: visualizationConfig.pixelLayers.map(
+          (cfg) => cfg.legend.color
+        ),
       },
       // green: {
       //   mode: "bitmask",

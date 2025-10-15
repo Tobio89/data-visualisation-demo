@@ -59,7 +59,7 @@ const useVisualisationRendering = () => {
 
     const layers = constructLayers([
       {
-        layerConstructor: () => createPointLayers(viewer),
+        layerConstructor: () => createPointLayers(),
         shouldRender: true,
       },
       // {

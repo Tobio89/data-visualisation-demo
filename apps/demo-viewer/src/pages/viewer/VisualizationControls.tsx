@@ -18,7 +18,20 @@ const VisualizationControls = () => {
     updateRedChannel,
     drawMountains,
     updateDrawMountains,
+    drawMissionSites,
+    updateDrawMissionSites,
   } = useVisualizationStore();
+
+  const pointControls = [
+    {
+      state: drawMountains,
+      onToggle: updateDrawMountains,
+    },
+    {
+      state: drawMissionSites,
+      onToggle: updateDrawMissionSites,
+    },
+  ];
 
   return (
     <Box
@@ -41,7 +54,7 @@ const VisualizationControls = () => {
           return (
             <ToggleSwitch
               title={cfg.label}
-              color={cfg.color}
+              legend={cfg.legend}
               on={redChannel[ind]}
               onToggle={(val) => {
                 updateRedChannel(ind, !val);
@@ -51,13 +64,18 @@ const VisualizationControls = () => {
         })}
       </VisualisationSection>
       <VisualisationSection title="Points of Interest">
-        <ToggleSwitch
-          title="Mountains"
-          on={drawMountains}
-          onToggle={(val) => {
-            updateDrawMountains(!val);
-          }}
-        />
+        {visualizationConfig.pointLayers.map((cfg, ind) => {
+          return (
+            <ToggleSwitch
+              title={cfg.label}
+              legend={cfg.legend}
+              on={pointControls[ind].state}
+              onToggle={(val) => {
+                pointControls[ind].onToggle(!val);
+              }}
+            />
+          );
+        })}
       </VisualisationSection>
     </Box>
   );

@@ -14,6 +14,8 @@ const useVisualizationStore = create<VizState>((set) => ({
     }),
   drawMountains: true,
   updateDrawMountains: (value: boolean) => set({ drawMountains: value }),
+  drawMissionSites: true,
+  updateDrawMissionSites: (value: boolean) => set({ drawMissionSites: value }),
 }));
 
 const useMouseCoords = create<MouseCoordsState>((set) => ({

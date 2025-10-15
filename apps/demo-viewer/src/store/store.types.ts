@@ -5,6 +5,8 @@ export interface VizState {
   updateRedChannel: (index: number, value: boolean) => void;
   drawMountains: boolean;
   updateDrawMountains: (value: boolean) => void;
+  drawMissionSites: boolean;
+  updateDrawMissionSites: (value: boolean) => void;
 }
 
 export interface MouseCoordsState {

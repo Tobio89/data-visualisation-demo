@@ -1,5 +1,8 @@
 import { Box, styled, Switch, Typography } from "@mui/material";
-import type { ToggleSwitchProps } from "./ToggleSwitch.types";
+import type {
+  ToggleLegendProps,
+  ToggleSwitchProps,
+} from "./ToggleSwitch.types";
 
 const Toggle = styled(Switch)(({ theme, checked }) => ({
   "& .MuiSwitch-track": {
@@ -14,21 +17,41 @@ const Toggle = styled(Switch)(({ theme, checked }) => ({
   },
 }));
 
+const ToggleLegend = ({ color, shape }: ToggleLegendProps) => {
+  if (shape === "circle") {
+    return (
+      <Box
+        sx={{
+          width: "16px",
+          height: "16px",
+          backgroundColor: color,
+          borderRadius: "50%",
+        }}
+      />
+    );
+  }
+  if (shape === "square") {
+    return (
+      <Box sx={{ width: "16px", height: "16px", backgroundColor: color }} />
+    );
+  }
+  console.log("Legend provided but shape not supported");
+  return null;
+};
+
 const ToggleLabel = ({
   title,
-  color,
-}: Pick<ToggleSwitchProps, "title" | "color">) => {
+  legend,
+}: Pick<ToggleSwitchProps, "title" | "legend">) => {
   return (
     <Box sx={{ display: "flex", alignItems: "center", gap: "6px" }}>
-      {color && (
-        <Box sx={{ width: "16px", height: "16px", backgroundColor: color }} />
-      )}
+      {legend && <ToggleLegend color={legend.color} shape={legend.shape} />}
       <Typography>{title}</Typography>
     </Box>
   );
 };
 
-const ToggleSwitch = ({ title, on, onToggle, color }: ToggleSwitchProps) => {
+const ToggleSwitch = ({ title, on, onToggle, legend }: ToggleSwitchProps) => {
   return (
     <Box
       sx={{
@@ -39,7 +62,7 @@ const ToggleSwitch = ({ title, on, onToggle, color }: ToggleSwitchProps) => {
         justifyContent: "space-between",
       }}
     >
-      <ToggleLabel title={title} color={color} />
+      <ToggleLabel title={title} legend={legend} />
       <Toggle checked={on} onChange={() => onToggle(on)} />
     </Box>
   );
